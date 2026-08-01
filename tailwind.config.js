@@ -27,5 +27,7 @@ export default {
     'app.vue',
     'app/**/*.vue',
   ],
-  plugins: [],
+  plugins: [require (
+    '@tailwindcss/forms'
+  )],
 }

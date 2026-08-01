@@ -1,21 +1,45 @@
 <script setup lang="ts">
-import Footer from '../../../components/Footer.vue'
-import Navbar from '../../../components/Navbar.vue'
+import Footer from '../../../../components/Footer.vue'
+import Navbar from '../../../../components/Navbar.vue'
+
+interface CampaignData {
+  id: number
+  name: string
+  short_description: string
+  description: string
+  goal_amount: number
+  perks: string[]
+}
+
+interface CampaignResponse {
+  meta: { message: string; code: number; status: string }
+  data: CampaignData
+}
 
 definePageMeta({
   middleware: 'sidebase-auth',
 })
 
+const route = useRoute()
 const config = useRuntimeConfig()
 const { token } = useAuth()
 const router = useRouter()
 
+const { data: campaign } = await useAsyncData('edit-campaign-detail', () =>
+  $fetch<CampaignResponse>(`/campaigns/${route.params.id}`, {
+    baseURL: config.public.apiBase,
+    headers: {
+      Authorization: token.value ?? '',
+    },
+  }),
+)
+
 const form = reactive({
-  name: '',
-  goal_amount: 0,
-  short_description: '',
-  perks: '',
-  description: '',
+  name: campaign.value?.data.name ?? '',
+  goal_amount: campaign.value?.data.goal_amount ?? 0,
+  short_description: campaign.value?.data.short_description ?? '',
+  perks: campaign.value?.data.perks?.join(', ') ?? '',
+  description: campaign.value?.data.description ?? '',
 })
 
 const isSubmitting = ref(false)
@@ -26,9 +50,9 @@ async function save() {
   errorMessage.value = ''
 
   try {
-    const response = await $fetch<{ data: { id: number } }>('/campaigns', {
+    await $fetch(`/campaigns/${route.params.id}`, {
       baseURL: config.public.apiBase,
-      method: 'POST',
+      method: 'PUT',
       body: {
         name: form.name,
         goal_amount: form.goal_amount,
@@ -41,10 +65,10 @@ async function save() {
       },
     })
 
-    await router.push('/dashboard/projects/' + response.data.id)
+    await router.push('/dashboard/projects/' + route.params.id)
   } catch (error: any) {
     errorMessage.value =
-      error?.data?.meta?.message || 'Failed to create campaign, please try again.'
+      error?.data?.meta?.message || 'Failed to update campaign, please try again.'
   } finally {
     isSubmitting.value = false
   }
@@ -66,7 +90,7 @@ async function save() {
       </div>
       <div class="flex items-center justify-between">
         <div class="w-3/4 mr-6">
-          <h3 class="mb-4 text-2xl text-gray-900">Create New Projects</h3>
+          <h3 class="mb-4 text-2xl text-gray-900">Edit Campaign "{{ campaign?.data.name }}"</h3>
         </div>
         <div class="w-1/4 text-right">
           <button
@@ -74,7 +98,7 @@ async function save() {
             :disabled="isSubmitting"
             class="inline-flex items-center px-4 py-1 font-bold text-white rounded bg-green-button hover:bg-green-button disabled:opacity-50"
           >
-            {{ isSubmitting ? 'Saving...' : 'Save' }}
+            {{ isSubmitting ? 'Updating...' : 'Update' }}
           </button>
         </div>
       </div>
