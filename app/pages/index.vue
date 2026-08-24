@@ -48,6 +48,7 @@ const { data: campaigns } = await useAsyncData('campaigns', () =>
               a real product and be the contributor
             </p>
             <button
+              type="button"
               @click="$router.push({ path: '/' })"
               class="block px-12 py-3 text-xl font-semibold text-white rounded-full bg-orange-button hover:bg-green-button"
             >
@@ -128,59 +129,53 @@ const { data: campaigns } = await useAsyncData('campaigns', () =>
         <div
           v-for="campaign in campaigns?.data ?? []"
           :key="campaign.id"
-          class="group relative flex flex-col w-full h-full min-h-[520px] p-5 pb-24 overflow-hidden border border-gray-500 cursor-pointer card-project rounded-20 sm:pb-5"
+          class="relative flex flex-col w-full p-5 overflow-hidden border border-gray-500 cursor-pointer group card-project rounded-20"
         >
-          <div class="flex flex-col flex-1 min-h-0 item">
-            <figure class="overflow-hidden item-image aspect-[4/3] rounded-20 shrink-0">
-              <img
-                :src="campaign.image_url"
-                :alt="campaign.name"
-                class="object-cover w-full h-full"
-              />
-            </figure>
-            <div class="flex flex-col flex-1 min-h-0 item-meta">
-              <h4 class="mt-5 text-2xl font-medium text-gray-900 shrink-0 md:text-3xl">
-                {{ campaign.name }}
-              </h4>
-              <p class="mt-2 mb-4 font-light text-gray-900 text-md shrink-0 clamp-2-lines">
-                {{ campaign.short_description }}
-              </p>
-              <div class="mt-6 shrink-0 progress-bar">
-                <div class="h-3 mb-5 overflow-hidden text-xs bg-gray-200 rounded-lg">
-                  <div
-                    :style="{
-                      width:
-                        Math.min(
-                          100,
-                          Math.round((campaign.current_amount / campaign.goal_amount) * 100),
-                        ) + '%',
-                    }"
-                    class="flex flex-col justify-center h-full text-center text-white bg-purple-progress progress-striped"
-                  ></div>
-                </div>
-                <div class="flex items-center progress-info">
-                  <div class="text-sm font-medium">
-                    {{ Math.round((campaign.current_amount / campaign.goal_amount) * 100) }}%
-                  </div>
-                  <div class="ml-auto text-sm font-semibold">
-                    Rp. {{ new Intl.NumberFormat('id-ID').format(campaign.goal_amount) }}
-                  </div>
-                </div>
+          <figure class="overflow-hidden item-image aspect-[4/3] rounded-20">
+            <img
+              :src="campaign.image_url"
+              :alt="campaign.name"
+              class="object-cover w-full h-full"
+            />
+          </figure>
+          <h4
+            class="mt-5 text-2xl font-medium text-gray-900 md:text-3xl line-clamp-1 lg:line-clamp-2"
+          >
+            {{ campaign.name }}
+          </h4>
+          <p class="mt-2 mb-4 font-light text-gray-900 text-md line-clamp-1 lg:line-clamp-2">
+            {{ campaign.short_description }}
+          </p>
+          <div class="mt-6 progress-bar">
+            <div class="h-3 mb-5 overflow-hidden text-xs bg-gray-200 rounded-lg">
+              <div
+                :style="{
+                  width:
+                    Math.min(
+                      100,
+                      Math.round((campaign.current_amount / campaign.goal_amount) * 100),
+                    ) + '%',
+                }"
+                class="flex flex-col justify-center h-full text-center text-white bg-purple-progress progress-striped"
+              ></div>
+            </div>
+            <div class="flex items-center progress-info">
+              <div class="text-sm font-medium">
+                {{ Math.round((campaign.current_amount / campaign.goal_amount) * 100) }}%
               </div>
-              <div class="flex-1"></div>
+              <div class="ml-auto text-sm font-semibold">
+                Rp. {{ new Intl.NumberFormat('id-ID').format(campaign.goal_amount) }}
+              </div>
             </div>
           </div>
 
-          <div
-            class="absolute inset-x-0 bottom-0 z-10 flex items-center justify-center p-5 transition-all duration-200 ease-out translate-y-0 opacity-100 bg-white/95 sm:translate-y-full sm:opacity-0 sm:group-hover:translate-y-0 sm:group-hover:opacity-100"
+          <button
+            type="button"
+            @click="$router.push({ path: '/projects/' + campaign.id })"
+            class="block w-full px-6 py-3 mt-5 text-lg font-semibold text-center text-white rounded-full bg-orange-button hover:bg-green-button"
           >
-            <button
-              @click="$router.push({ path: '/projects/' + campaign.id })"
-              class="block w-full px-6 py-3 text-lg font-semibold text-center text-white rounded-full button-cta bg-orange-button hover:bg-green-button"
-            >
-              Fund Now
-            </button>
-          </div>
+            Fund Now
+          </button>
         </div>
       </div>
     </section>
@@ -227,20 +222,28 @@ const { data: campaigns } = await useAsyncData('campaigns', () =>
         <div class="hidden lg:block lg:w-2/12"></div>
       </div>
     </section>
-    <div class="-mt-20 cta-clip"></div>
+    <div class="hidden -mt-20 cta-clip sm:block"></div>
     <CallToAction />
     <Footer />
   </div>
 </template>
 
 <style scoped>
-.clamp-2-lines {
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  line-height: 1.3;
-  max-height: calc(1.3em * 2);
+.card-project {
+  max-height: none;
+  overflow: visible;
+}
+
+.card-project:hover .progress-bar {
+  opacity: 1 !important;
+  height: auto !important;
+  margin-top: 1.5rem !important;
+  padding: 0 !important;
+}
+.card-project:hover .progress-info {
+  opacity: 1 !important;
+  height: auto !important;
+  margin: 0 !important;
+  padding: 0 !important;
 }
 </style>

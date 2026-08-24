@@ -138,23 +138,23 @@ async function upload() {
         <Navbar />
       </div>
     </section>
-    <section class="container pt-8 mx-auto">
+    <section class="container px-5 pt-8 mx-auto lg:px-8">
       <div class="flex items-center justify-between">
-        <div class="w-full mr-6">
-          <h2 class="mb-2 text-4xl font-medium text-gray-900">Dashboard</h2>
+        <div class="w-full">
+          <h2 class="mb-2 text-3xl font-medium text-gray-900 sm:text-4xl">Dashboard</h2>
         </div>
       </div>
-      <div class="flex items-center justify-between">
-        <div class="w-3/4 mr-6">
+      <div class="flex flex-col items-start justify-between gap-3 mb-4 sm:flex-row sm:items-center">
+        <div class="w-full sm:w-3/4 sm:mr-6">
           <h3 class="mb-4 text-2xl text-gray-900">Campaign Details</h3>
         </div>
-        <div class="w-1/4 text-right">
+        <div class="w-full sm:w-1/4 sm:text-right">
           <nuxt-link
             :to="{
               name: 'dashboard-projects-id-edit',
               params: { id: route.params.id },
             }"
-            class="inline-flex items-center px-4 py-1 font-bold text-white rounded bg-green-button hover:bg-green-button"
+            class="inline-flex items-center justify-center w-full px-4 py-2 font-bold text-white rounded bg-green-button hover:bg-green-button sm:w-auto sm:py-1"
           >
             Edit
           </nuxt-link>
@@ -187,11 +187,13 @@ async function upload() {
           </div>
         </div>
       </div>
-      <div class="flex items-center justify-between">
-        <div class="w-2/4 mr-6">
+      <div class="flex flex-col items-start justify-between gap-3 sm:flex-row sm:items-center">
+        <div class="w-full sm:w-2/4 sm:mr-6">
           <h3 class="mt-5 mb-4 text-2xl text-gray-900">Gallery</h3>
         </div>
-        <div class="flex items-center justify-end w-2/4 gap-2 text-right">
+        <div
+          class="flex flex-col items-stretch w-full gap-2 sm:flex-row sm:items-center sm:justify-end sm:w-2/4 sm:text-right"
+        >
           <label for="campaign-image-file" class="sr-only">Choose image file</label>
           <input
             id="campaign-image-file"
@@ -199,19 +201,20 @@ async function upload() {
             type="file"
             accept="image/png, image/jpeg"
             @change="selectFile"
-            class="p-1 overflow-hidden border rounded"
+            class="w-full p-1 overflow-hidden border rounded sm:w-auto"
           />
           <button
+            type="button"
             @click="upload"
             :disabled="isUploading"
-            class="inline-flex items-center px-4 py-2 font-bold text-white rounded bg-green-button hover:bg-green-button disabled:opacity-50"
+            class="inline-flex items-center justify-center px-4 py-2 font-bold text-white rounded bg-green-button hover:bg-green-button disabled:opacity-50"
           >
             {{ isUploading ? 'Uploading...' : 'Upload' }}
           </button>
         </div>
       </div>
       <p v-if="uploadError" class="mb-3 text-sm text-red-600">{{ uploadError }}</p>
-      <div class="grid grid-cols-4 gap-4 -mx-2">
+      <div class="grid grid-cols-2 gap-4 -mx-2 sm:grid-cols-3 lg:grid-cols-4">
         <div
           v-for="image in campaign?.data.images ?? []"
           :key="image.image_url"
@@ -223,7 +226,7 @@ async function upload() {
         </div>
       </div>
       <div class="flex items-center justify-between">
-        <div class="w-3/4 mr-6">
+        <div class="w-full">
           <h3 class="mt-5 mb-4 text-2xl text-gray-900">Transaction History</h3>
         </div>
       </div>
@@ -259,8 +262,8 @@ async function upload() {
         </div>
       </div>
     </section>
-    <div class="-mt-20 cta-clip"></div>
-    <section class="pt-64 pb-10 call-to-action bg-purple-progress"></section>
+    <div class="hidden -mt-20 cta-clip sm:block"></div>
+    <section class="px-5 pt-32 pb-10 sm:pt-48 lg:pt-64 call-to-action bg-purple-progress"></section>
     <Footer />
   </div>
 </template>

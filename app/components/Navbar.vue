@@ -19,8 +19,10 @@ async function logout() {
 </script>
 
 <template>
-  <header class="relative flex items-center justify-between py-4 lg:justify-start lg:py-6">
-    <div style="height: 54px" class="pr-5 shrink-0">
+  <header
+    class="relative flex items-center justify-between px-4 py-4 sm:px-6 lg:justify-start lg:px-8 lg:py-6"
+  >
+    <div class="h-10 pr-5 shrink-0 sm:h-12 lg:h-[54px]">
       <img src="/logo.svg" alt="logo" class="h-full" />
     </div>
 
@@ -65,6 +67,7 @@ async function logout() {
     <!-- Desktop: sudah login -->
     <div v-else class="relative hidden ml-auto lg:block">
       <button
+        type="button"
         @click="toggleDropdown"
         class="inline-flex items-center px-6 py-4 font-semibold text-gray-700 bg-white rounded"
       >
@@ -79,7 +82,7 @@ async function logout() {
           <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
         </svg>
       </button>
-      <ul v-if="isDropdownOpen" class="absolute right-0 w-full pt-1 -mt-2 text-gray-700 shadow">
+      <ul v-if="isDropdownOpen" class="absolute right-0 w-56 pt-1 -mt-2 text-gray-700 shadow">
         <li>
           <nuxt-link
             class="block px-4 py-2 whitespace-no-wrap bg-white rounded-t hover:bg-gray-100 hover:text-orange-500"
@@ -108,6 +111,7 @@ async function logout() {
 
     <!-- Hamburger (mobile & tablet) -->
     <button
+      type="button"
       @click="toggleMenu"
       class="flex items-center justify-center w-10 h-10 text-white lg:hidden"
       aria-label="Toggle menu"
@@ -141,7 +145,7 @@ async function logout() {
     >
       <div
         v-if="isMenuOpen"
-        class="absolute left-0 z-50 w-full p-5 mt-2 bg-indigo-600 shadow-lg top-full rounded-20 lg:hidden"
+        class="absolute left-0 z-50 w-full p-5 mt-2 bg-indigo-600 shadow-lg top-full rounded-xl lg:hidden"
       >
         <ul class="flex flex-col">
           <li>

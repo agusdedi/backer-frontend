@@ -45,11 +45,11 @@ const { data: campaigns } = await useAsyncData('user-campaigns', () =>
         <Navbar />
       </div>
     </section>
-    <section class="container pt-8 mx-auto">
-      <div class="flex items-center justify-between mb-6">
-        <div class="w-3/4 mr-6">
-          <h2 class="mb-2 text-4xl font-medium text-gray-900">Dashboard</h2>
-          <ul class="flex mt-2">
+    <section class="container px-5 pt-8 mx-auto lg:px-8">
+      <div class="flex flex-col items-start justify-between gap-4 mb-6 sm:flex-row sm:items-center">
+        <div class="w-full sm:w-3/4 sm:mr-6">
+          <h2 class="mb-2 text-3xl font-medium text-gray-900 sm:text-4xl">Dashboard</h2>
+          <ul class="flex flex-wrap mt-2">
             <li class="mr-6">
               <nuxt-link class="font-bold text-gray-800" to="/dashboard/index">
                 Your Projects
@@ -62,10 +62,10 @@ const { data: campaigns } = await useAsyncData('user-campaigns', () =>
             </li>
           </ul>
         </div>
-        <div class="w-1/4 text-right">
+        <div class="w-full sm:w-1/4 sm:text-right">
           <nuxt-link
             to="/dashboard/projects/create"
-            class="inline-flex items-center px-4 py-4 font-bold text-white rounded bg-orange-button hover:bg-green-button"
+            class="inline-flex items-center justify-center w-full px-4 py-4 font-bold text-white rounded bg-orange-button hover:bg-green-button sm:w-auto"
           >
             + Create Campaign
           </nuxt-link>
@@ -101,14 +101,16 @@ const { data: campaigns } = await useAsyncData('user-campaigns', () =>
               </p>
             </div>
             <div class="flex items-center">
-              <button class="px-4 py-2 text-white rounded bg-green-button">Detail</button>
+              <button type="button" class="px-4 py-2 text-white rounded bg-green-button">
+                Detail
+              </button>
             </div>
           </nuxt-link>
         </div>
       </div>
     </section>
-    <div class="-mt-20 cta-clip"></div>
-    <section class="pt-64 pb-10 call-to-action bg-purple-progress"></section>
+    <div class="hidden -mt-20 cta-clip sm:block"></div>
+    <section class="px-5 pt-32 pb-10 sm:pt-48 lg:pt-64 call-to-action bg-purple-progress"></section>
     <Footer />
   </div>
 </template>

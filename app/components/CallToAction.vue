@@ -8,6 +8,7 @@
           best idea and innovation
         </h1>
         <button
+          type="button"
           @click="$router.push({ path: '/register' })"
           class="inline-block px-6 py-3 mt-8 text-lg font-semibold text-white rounded-full sm:py-4 bg-orange-button hover:bg-green-button"
         >

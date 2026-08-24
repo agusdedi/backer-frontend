@@ -92,7 +92,7 @@ async function fund() {
             <div
               v-for="image in campaign?.data.images ?? []"
               :key="image.image_url"
-              class="relative w-1/4 p-2 m-2 bg-white border border-gray-400 rounded-20"
+              class="relative w-[calc(33.333%-1rem)] p-2 m-2 bg-white border border-gray-400 rounded-20 sm:w-[calc(25%-1rem)]"
             >
               <figure class="item-thumbnail">
                 <img
@@ -145,6 +145,7 @@ async function fund() {
                 @keyup.enter="fund"
               />
               <button
+                type="button"
                 @click="fund"
                 class="block w-full px-6 py-3 mt-3 font-medium text-center text-white rounded-full button-cta bg-orange-button hover:bg-green-button text-md"
               >
@@ -153,6 +154,7 @@ async function fund() {
             </template>
             <template v-else>
               <button
+                type="button"
                 @click="navigateTo('/login')"
                 class="block w-full px-6 py-3 mt-3 font-medium text-center text-white rounded-full button-cta bg-orange-button hover:bg-green-button text-md"
               >
@@ -206,7 +208,7 @@ async function fund() {
         <div class="hidden w-1/4 md:block"></div>
       </div>
     </section>
-    <div class="-mt-20 cta-clip"></div>
+    <div class="hidden -mt-20 cta-clip sm:block"></div>
     <CallToAction />
     <Footer />
   </div>

@@ -48,11 +48,11 @@ const { data: transactions } = await useAsyncData('user-transactions', () =>
         <Navbar />
       </div>
     </section>
-    <section class="container pt-8 mx-auto">
+    <section class="container px-5 pt-8 mx-auto lg:px-8">
       <div class="flex items-center justify-between mb-6">
-        <div class="w-3/4 mr-6">
-          <h2 class="mb-2 text-4xl font-medium text-gray-900">Dashboard</h2>
-          <ul class="flex mt-2">
+        <div class="w-full">
+          <h2 class="mb-2 text-3xl font-medium text-gray-900 sm:text-4xl">Dashboard</h2>
+          <ul class="flex flex-wrap mt-2">
             <li class="mr-6">
               <nuxt-link class="text-gray-500 hover:text-gray-800" to="/dashboard">
                 Your Projects
@@ -107,8 +107,8 @@ const { data: transactions } = await useAsyncData('user-transactions', () =>
         </div>
       </div>
     </section>
-    <div class="-mt-20 cta-clip"></div>
-    <section class="pt-64 pb-10 call-to-action bg-purple-progress"></section>
+    <div class="hidden -mt-20 cta-clip sm:block"></div>
+    <section class="px-5 pt-32 pb-10 sm:pt-48 lg:pt-64 call-to-action bg-purple-progress"></section>
     <Footer />
   </div>
 </template>

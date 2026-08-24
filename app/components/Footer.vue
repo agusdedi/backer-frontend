@@ -1,6 +1,6 @@
 <template>
   <footer class="py-12 text-lg text-white sm:py-20 bg-purple-progress">
-    <div class="container px-5 mx-auto lg:px-0">
+    <div class="container px-5 mx-auto lg:px-8">
       <div class="grid grid-cols-1 gap-10 mb-4 sm:grid-cols-2 lg:grid-cols-5 lg:gap-6">
         <div class="sm:col-span-2 lg:col-span-2">
           <img src="/logo-footer.svg" alt="" class="mb-3" />
@@ -21,7 +21,7 @@
             <li class="mb-3">My Account</li>
             <li class="mb-3">Top Startups</li>
             <li class="mb-3">How-to Tutorials</li>
-            <li class="mb-3">Withdrawl</li>
+            <li class="mb-3">Withdrawal</li>
           </ul>
         </div>
         <div>

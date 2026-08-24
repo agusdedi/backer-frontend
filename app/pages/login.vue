@@ -2,14 +2,11 @@
 definePageMeta({
   layout: 'auth',
 })
-
 const { signIn, getSession } = useAuth()
-
 const login = reactive({
   email: '',
   password: '',
 })
-
 async function userLogin() {
   try {
     const result = await signIn(
@@ -17,13 +14,10 @@ async function userLogin() {
       { redirect: false },
     )
     console.log('signIn result:', result)
-
     await getSession()
-
     const { status, data } = useAuth()
     console.log('Auth status:', status.value)
     console.log('Auth data:', data.value)
-
     if (status.value === 'authenticated') {
       await navigateTo('/dashboard')
     } else {
@@ -34,14 +28,13 @@ async function userLogin() {
   }
 }
 </script>
-
 <template>
   <div class="flex items-center justify-center h-screen">
     <div
-      class="hidden h-full bg-white rounded-tr-lg rounded-br-lg md:block lg:w-1/3 auth-background"
+      class="hidden h-screen bg-white rounded-tr-lg rounded-br-lg lg:block lg:w-1/3 auth-background"
     ></div>
-    <div class="flex items-center justify-center w-auto md:w-2/4 lg:w-2/3">
-      <div class="w-full px-10 lg:w-1/2 lg:px-0">
+    <div class="flex items-center justify-center w-full lg:w-2/3">
+      <div class="w-full px-6 sm:px-10 lg:w-1/2 lg:px-0">
         <h2 class="mb-6 text-3xl font-normal text-white">Sign In to Your Account</h2>
         <div class="mb-6">
           <div class="mb-4">
@@ -75,6 +68,7 @@ async function userLogin() {
         <div class="mb-6">
           <div class="mb-4">
             <button
+              type="button"
               @click="userLogin"
               class="block w-full px-6 py-4 text-lg font-semibold text-white rounded-full bg-orange-button hover:bg-green-button"
             >
@@ -92,7 +86,6 @@ async function userLogin() {
     </div>
   </div>
 </template>
-
 <style scoped>
 .auth-background {
   background-image: url('/sign-in-background.jpg');

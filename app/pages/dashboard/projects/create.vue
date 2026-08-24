@@ -58,25 +58,14 @@ async function save() {
         <Navbar />
       </div>
     </section>
-    <section class="container pt-8 mx-auto">
+    <section class="container px-5 pt-8 mx-auto lg:px-8">
       <div class="flex items-center justify-between">
-        <div class="w-full mr-6">
-          <h2 class="mb-2 text-4xl font-medium text-gray-900">Dashboard</h2>
+        <div class="w-full">
+          <h2 class="mb-2 text-3xl font-medium text-gray-900 sm:text-4xl">Dashboard</h2>
         </div>
       </div>
-      <div class="flex items-center justify-between">
-        <div class="w-3/4 mr-6">
-          <h3 class="mb-4 text-2xl text-gray-900">Create New Projects</h3>
-        </div>
-        <div class="w-1/4 text-right">
-          <button
-            @click="save"
-            :disabled="isSubmitting"
-            class="inline-flex items-center px-4 py-1 font-bold text-white rounded bg-green-button hover:bg-green-button disabled:opacity-50"
-          >
-            {{ isSubmitting ? 'Saving...' : 'Save' }}
-          </button>
-        </div>
+      <div class="mb-4">
+        <h3 class="text-2xl text-gray-900">Create New Projects</h3>
       </div>
 
       <div v-if="errorMessage" class="p-4 mb-4 text-red-700 bg-red-100 rounded">
@@ -165,13 +154,23 @@ async function save() {
                   ></textarea>
                 </div>
               </div>
+              <div class="flex justify-end px-3 mt-2">
+                <button
+                  type="button"
+                  @click="save"
+                  :disabled="isSubmitting"
+                  class="inline-flex items-center justify-center w-full px-4 py-3 font-bold text-white rounded bg-green-button hover:bg-green-button disabled:opacity-50 sm:w-auto"
+                >
+                  {{ isSubmitting ? 'Saving...' : 'Save' }}
+                </button>
+              </div>
             </form>
           </div>
         </div>
       </div>
     </section>
-    <div class="-mt-20 cta-clip"></div>
-    <section class="pt-64 pb-10 call-to-action bg-purple-progress"></section>
+    <div class="hidden -mt-20 cta-clip sm:block"></div>
+    <section class="px-5 pt-32 pb-10 sm:pt-48 lg:pt-64 call-to-action bg-purple-progress"></section>
     <Footer />
   </div>
 </template>

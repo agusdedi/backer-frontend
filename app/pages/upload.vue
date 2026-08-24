@@ -63,6 +63,7 @@ async function upload() {
       <div class="mt-6 mb-4">
         <div class="mb-3">
           <button
+            type="button"
             :disabled="selectedFiles == undefined"
             @click="upload"
             :class="selectedFiles == undefined ? 'opacity-50 cursor-not-allowed' : ''"
@@ -75,6 +76,7 @@ async function upload() {
       <div>
         <div class="mb-4">
           <button
+            type="button"
             @click="navigateTo('/register-success')"
             class="block w-full px-6 py-4 text-lg font-light text-white bg-transparent border border-white rounded-full hover:bg-white hover:bg-opacity-25"
           >

@@ -33,10 +33,10 @@ async function userRegister() {
 <template>
   <div class="flex items-center justify-center h-screen">
     <div
-      class="hidden h-full bg-white rounded-tr-lg rounded-br-lg md:block lg:w-1/3 auth-background"
+      class="hidden h-screen bg-white rounded-tr-lg rounded-br-lg lg:block lg:w-1/3 auth-background"
     ></div>
-    <div class="flex items-center justify-center w-auto md:w-2/4 lg:w-2/3">
-      <div class="w-full px-10 lg:w-1/2 lg:px-0">
+    <div class="flex items-center justify-center w-full lg:w-2/3">
+      <div class="w-full px-6 sm:px-10 lg:w-1/2 lg:px-0">
         <h2 class="mb-6 text-3xl font-normal text-white">Sign Up Account</h2>
         <div class="mb-6">
           <div class="mb-4">
@@ -98,6 +98,7 @@ async function userRegister() {
         <div class="mb-6">
           <div class="mb-4">
             <button
+              type="button"
               @click="userRegister"
               class="block w-full px-6 py-4 text-lg font-semibold text-white rounded-full bg-orange-button hover:bg-green-button"
             >
