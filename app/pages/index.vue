@@ -23,10 +23,10 @@ interface CampaignsResponse {
   data: Campaign[]
 }
 
-const { data: campaigns } = await useAsyncData('campaigns', () =>
-  $fetch<CampaignsResponse>('/campaigns', {
-    baseURL: useRuntimeConfig().public.apiBase,
-  }),
+const { data: campaigns } = await useAsyncData(
+  'campaigns',
+  () => apiFetchWithWakeRetry<CampaignsResponse>('/campaigns'),
+  { server: false },
 )
 </script>
 
